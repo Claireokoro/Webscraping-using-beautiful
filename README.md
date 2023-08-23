@@ -4,7 +4,7 @@
 
 # Wikipedia Web Scraping Project
 
-Welcome to the Wikipedia Web Scraping Project repository! In this project, we will be utilizing Object-Oriented Programming (OOP) principles to scrape a static website on Wikipedia. We'll extract data using the BeautifulSoup and Requests libraries in Python.
+Welcome to the Wikipedia Web Scraping Project repository! In this project, I will be utilizing Object-Oriented Programming (OOP) principles to scrape a static website on Wikipedia. I'll extract data using the BeautifulSoup and Requests libraries in Python.
 
 ## Table of Contents
 
@@ -60,11 +60,11 @@ To extract the desired table, we identify its class name using the browser's ins
 soup = BeautifulSoup(response, 'html.parser')
 table = soup.find('table', {'class': 'wikitable sortable'})
 
-headers = [header.text.strip() for header in table.find_all('th')]
-rows = []
-for row in table.find_all('tr')[1:]:
-    row_data = [cell.text.strip() for cell in row.find_all(['td', 'th'])]
-    rows.append(row_data)
+column_headers = table.find_all('th')
+
+headers = []
+for colname in column_headers :
+    headers.append(colname.text.strip())
 ```
 
 ### Cleaning and Transforming Data
@@ -83,7 +83,7 @@ df['Revenue growth'] = df['Revenue growth'].str.replace('%', '').astype(int)
 The cleaned and structured data is saved as a CSV file. This file can then be used for analysis, visualization, and further exploration.
 
 ```python
-df.to_csv('largest_companies_data.csv', index=False)
+df.to_csv('wiki_companies.csv', index=False)
 ```
 
 ## Getting Started
@@ -95,17 +95,13 @@ df.to_csv('largest_companies_data.csv', index=False)
 
 ## Contributors
 
-- [Your Name]
+- Izundu Dan-Ekeh
+- Okoro Maryclaire Orobosa
 
 Feel free to contribute to this project by enhancing the code, improving the documentation, or suggesting additional features.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
 
 Enjoy exploring the world of web scraping with Wikipedia data!
 
 ---
-```
 
-Please replace `[Your Name]` with your actual name and update any other placeholders as needed.
